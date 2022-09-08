@@ -1,43 +1,24 @@
 {
-  "name": "cnv_reports_workflow_v1.0.0",
-  "title": "cnv_reports_workflow_v1.0.0",
+  "name": "dias_cnvreports_v1.0.0",
+  "title": "dias_cnvreports_v1.0.0",
   "stages": [
     {
       "id": "stage-GFZQB7Q4qq8X6yjKG2pFQ58x",
+      "name": "generate_bed_for_excluded_annotation",
       "executable": "app-generate_bed/1.2.0",
       "input": {
-        "gene_panels": {
-          "$dnanexus_link": {
-            "project": "project-Fkb6Gkj433GVVvj73J7x8KbV",
-            "id": "file-GBxP5Z8433GfKq081gj59q82"
-          }
-        },
-        "nirvana_genes2transcripts": {
-          "$dnanexus_link": {
-            "project": "project-Fkb6Gkj433GVVvj73J7x8KbV",
-            "id": "file-GF613kj433Gy5P4v5FZqPk3j"
-          }
-        },
-        "exons_nirvana": {
-          "$dnanexus_link": {
-            "project": "project-Fkb6Gkj433GVVvj73J7x8KbV",
-            "id": "file-GF611Z8433Gk7gZ47gypK7ZZ"
-          }
-        },
-        "panel": "R134.1_Familial hypercholesterolaemia_P",
-        "flank": 495,
-        "additional_regions": {
-          "$dnanexus_link": "file-GFZVJx84qq8V322jPG19jkBz"
-        }
+        "flank": 0
       }
     },
     {
-      "id": "stage-GFYvJF04qq8VKgq34j30pZZ3",
-      "executable": "app-eggd_vep/1.1.0",
+      "id": "stage-GG39Gq04qq8ZkfgV31yQy93v",
+      "name": "generate_bed_for_vep",
+      "executable": "app-generate_bed/1.2.0"
+    },
+    {
+      "id": "stage-GG1qYz84qq8yKzF1J2X48q62",
+      "executable": "app-eggd_annotate_excluded_regions/1.0.0",
       "input": {
-        "config_file": {
-          "$dnanexus_link": "file-GFBgJg84xVp3X4q3BX7jXbbZ"
-        },
         "panel_bed": {
           "$dnanexus_link": {
             "stage": "stage-GFZQB7Q4qq8X6yjKG2pFQ58x",
@@ -47,28 +28,53 @@
       }
     },
     {
-      "id": "stage-GFYvJGQ4qq8by6fVF8XKB0Y1",
-      "executable": "app-eggd_generate_variant_workbook/2.1.1",
+      "id": "stage-GFYvJF04qq8VKgq34j30pZZ3",
+      "executable": "app-eggd_vep/1.1.0",
       "input": {
-        "vcfs": [
-          {
-            "$dnanexus_link": {
-              "stage": "stage-GFYvJF04qq8VKgq34j30pZZ3",
-              "outputField": "annotated_vcf"
-            }
+        "normalise": false,
+        "panel_bed": {
+          "$dnanexus_link": {
+            "stage": "stage-GG39Gq04qq8ZkfgV31yQy93v",
+            "outputField": "bed_file"
           }
-        ]
+        }
+      },
+      "systemRequirements": {
+        "*": {
+          "instanceType": "mem1_ssd1_v2_x4"
+        }
+      }
+    },
+    {
+      "id": "stage-GG2z5yQ4qq8vb2xp4pB8XByz",
+      "executable": "app-eggd_additional_cnv_tasks/1.0.0",
+      "input": {
+        "vcf": {
+          "$dnanexus_link": {
+            "stage": "stage-GFYvJF04qq8VKgq34j30pZZ3",
+            "outputField": "annotated_vcf"
+          }
+        }
       }
     },
     {
       "id": "stage-GFfYY9j4qq8ZxpFpP8zKG7G0",
       "executable": "app-eggd_generate_variant_workbook/2.2.0",
       "input": {
+        "additional_sheet_names": "ExcludedRegions",
         "vcfs": [
           {
             "$dnanexus_link": {
-              "stage": "stage-GFYvJGQ4qq8by6fVF8XKB0Y1",
-              "outputField": "xlsx_report"
+              "stage": "stage-GG2z5yQ4qq8vb2xp4pB8XByz",
+              "outputField": "output_vcf"
+            }
+          }
+        ],
+        "additional_files": [
+          {
+            "$dnanexus_link": {
+              "stage": "stage-GG1qYz84qq8yKzF1J2X48q62",
+              "outputField": "annotated_excluded_file"
             }
           }
         ]
