@@ -1,0 +1,84 @@
+{
+  "name": "dias_cnvreports_v1.0.0",
+  "title": "dias_cnvreports_v1.0.0",
+  "stages": [
+    {
+      "id": "stage-GFZQB7Q4qq8X6yjKG2pFQ58x",
+      "name": "generate_bed_for_excluded_annotation",
+      "executable": "app-generate_bed/1.2.0",
+      "input": {
+        "flank": 0
+      }
+    },
+    {
+      "id": "stage-GG39Gq04qq8ZkfgV31yQy93v",
+      "name": "generate_bed_for_vep",
+      "executable": "app-generate_bed/1.2.0"
+    },
+    {
+      "id": "stage-GG1qYz84qq8yKzF1J2X48q62",
+      "executable": "app-eggd_annotate_excluded_regions/1.0.0",
+      "input": {
+        "panel_bed": {
+          "$dnanexus_link": {
+            "stage": "stage-GFZQB7Q4qq8X6yjKG2pFQ58x",
+            "outputField": "bed_file"
+          }
+        }
+      }
+    },
+    {
+      "id": "stage-GFYvJF04qq8VKgq34j30pZZ3",
+      "executable": "app-eggd_vep/1.1.0",
+      "input": {
+        "normalise": false,
+        "panel_bed": {
+          "$dnanexus_link": {
+            "stage": "stage-GG39Gq04qq8ZkfgV31yQy93v",
+            "outputField": "bed_file"
+          }
+        }
+      },
+      "systemRequirements": {
+        "*": {
+          "instanceType": "mem1_ssd1_v2_x4"
+        }
+      }
+    },
+    {
+      "id": "stage-GG2z5yQ4qq8vb2xp4pB8XByz",
+      "executable": "app-eggd_additional_cnv_tasks/1.0.0",
+      "input": {
+        "vcf": {
+          "$dnanexus_link": {
+            "stage": "stage-GFYvJF04qq8VKgq34j30pZZ3",
+            "outputField": "annotated_vcf"
+          }
+        }
+      }
+    },
+    {
+      "id": "stage-GFfYY9j4qq8ZxpFpP8zKG7G0",
+      "executable": "app-eggd_generate_variant_workbook/2.2.0",
+      "input": {
+        "additional_sheet_names": "ExcludedRegions",
+        "vcfs": [
+          {
+            "$dnanexus_link": {
+              "stage": "stage-GG2z5yQ4qq8vb2xp4pB8XByz",
+              "outputField": "output_vcf"
+            }
+          }
+        ],
+        "additional_files": [
+          {
+            "$dnanexus_link": {
+              "stage": "stage-GG1qYz84qq8yKzF1J2X48q62",
+              "outputField": "annotated_excluded_file"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

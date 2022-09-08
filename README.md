@@ -1,1 +1,16 @@
-# eggd_CEN_CNV_reports_workflow
+# dias_cnvreports (DNAnexus Platform Workflow)
+
+DNAnexus workflow to generate bed files, coverage reports and Excel workbooks for gCNV reports.
+
+## What apps are used in this workflow?
+
+|               App               | Version |
+| -------------                   | ------------- |
+| generate_bed                    | 1.2.0  |
+| eggd_annotate_excluded_regions  | 1.0.0  |
+| generate_bed                    | 1.2.0    |
+| eggd_vep                        | 1.1.0  |
+| eggd_generate_variant_workbook  | 2.2.0  |
+
+
+This workflow was made by EMEE GLH
