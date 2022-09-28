@@ -77,7 +77,11 @@
               "outputField": "annotated_excluded_file"
             }
           }
-        ]
+        ],
+        "exclude_columns": "REF FILTER CSQ_Allele CSQ_Consequence CSQ_IMPACT",
+        "reorder_columns": "CHROM POS END CNVLEN ID ALT QUAL CSQ_SYMBOL CSQ_Feature CSQ_VARIANT_CLASS CSQ_EXON CSQ_INTRON CSQ_STRAND GT CN NP QA QS QSE QSS",
+        "add_comment_column": true,
+        "summary": "dias"
       }
     }
   ]
