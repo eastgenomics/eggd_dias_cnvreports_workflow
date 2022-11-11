@@ -47,7 +47,7 @@
     },
     {
       "id": "stage-GG2z5yQ4qq8vb2xp4pB8XByz",
-      "executable": "app-eggd_additional_cnv_tasks/1.0.0",
+      "executable": "app-eggd_additional_cnv_tasks/1.0.1",
       "input": {
         "vcf": {
           "$dnanexus_link": {
