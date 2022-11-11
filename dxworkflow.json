@@ -1,6 +1,6 @@
 {
-  "name": "dias_cnvreports_v1.0.1",
-  "title": "dias_cnvreports_v1.0.1",
+  "name": "dias_cnvreports_v1.0.2",
+  "title": "dias_cnvreports_v1.0.2",
   "stages": [
     {
       "id": "stage-GFZQB7Q4qq8X6yjKG2pFQ58x",
@@ -17,7 +17,7 @@
     },
     {
       "id": "stage-GG1qYz84qq8yKzF1J2X48q62",
-      "executable": "app-eggd_annotate_excluded_regions/1.0.0",
+      "executable": "app-eggd_annotate_excluded_regions/1.0.1",
       "input": {
         "panel_bed": {
           "$dnanexus_link": {
