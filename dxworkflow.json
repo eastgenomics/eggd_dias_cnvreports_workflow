@@ -59,7 +59,7 @@
     },
     {
       "id": "stage-cnv_generate_workbook",
-      "executable": "app-eggd_generate_variant_workbook/2.2.0",
+      "executable": "app-eggd_generate_variant_workbook/2.5.0",
       "input": {
         "additional_sheet_names": "ExcludedRegions",
         "vcfs": [
