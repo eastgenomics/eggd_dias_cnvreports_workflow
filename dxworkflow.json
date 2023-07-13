@@ -3,7 +3,7 @@
   "title": "dias_cnvreports_v1.0.2",
   "stages": [
     {
-      "id": "stage-GFZQB7Q4qq8X6yjKG2pFQ58x",
+      "id": "stage-cnv_generate_bed_excluded",
       "name": "generate_bed_for_excluded_annotation",
       "executable": "app-generate_bed/1.2.0",
       "input": {
@@ -11,30 +11,30 @@
       }
     },
     {
-      "id": "stage-GG39Gq04qq8ZkfgV31yQy93v",
+      "id": "stage-cnv_generate_bed_vep",
       "name": "generate_bed_for_vep",
       "executable": "app-generate_bed/1.2.0"
     },
     {
-      "id": "stage-GG1qYz84qq8yKzF1J2X48q62",
+      "id": "stage-cnv_annotate_excluded_regions",
       "executable": "app-eggd_annotate_excluded_regions/1.0.1",
       "input": {
         "panel_bed": {
           "$dnanexus_link": {
-            "stage": "stage-GFZQB7Q4qq8X6yjKG2pFQ58x",
+            "stage": "stage-cnv_generate_bed_excluded",
             "outputField": "bed_file"
           }
         }
       }
     },
     {
-      "id": "stage-GFYvJF04qq8VKgq34j30pZZ3",
+      "id": "stage-cnv_vep",
       "executable": "app-eggd_vep/1.1.0",
       "input": {
         "normalise": false,
         "panel_bed": {
           "$dnanexus_link": {
-            "stage": "stage-GG39Gq04qq8ZkfgV31yQy93v",
+            "stage": "stage-cnv_generate_bed_vep",
             "outputField": "bed_file"
           }
         }
@@ -51,14 +51,14 @@
       "input": {
         "vcf": {
           "$dnanexus_link": {
-            "stage": "stage-GFYvJF04qq8VKgq34j30pZZ3",
+            "stage": "stage-cnv_vep",
             "outputField": "annotated_vcf"
           }
         }
       }
     },
     {
-      "id": "stage-GFfYY9j4qq8ZxpFpP8zKG7G0",
+      "id": "stage-cnv_generate_workbook",
       "executable": "app-eggd_generate_variant_workbook/2.2.0",
       "input": {
         "additional_sheet_names": "ExcludedRegions",
@@ -73,7 +73,7 @@
         "additional_files": [
           {
             "$dnanexus_link": {
-              "stage": "stage-GG1qYz84qq8yKzF1J2X48q62",
+              "stage": "stage-cnv_annotate_excluded_regions",
               "outputField": "annotated_excluded_file"
             }
           }
