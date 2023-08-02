@@ -27,8 +27,8 @@
     {
       "id": "stage-cnv_vep",
       "executable": "app-eggd_vep/1.1.0",
-      "normalise": false,
       "input": {
+        "normalise": false,
         "panel_bed": {
           "$dnanexus_link": {
             "stage": "stage-cnv_generate_bed_vep",
