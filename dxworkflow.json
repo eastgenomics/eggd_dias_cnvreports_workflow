@@ -1,6 +1,6 @@
 {
-  "name": "dias_cnvreports_v1.1.0",
-  "title": "dias_cnvreports_v1.1.0",
+  "name": "dias_cnvreports_v1.2.0",
+  "title": "dias_cnvreports_v1.2.0",
   "stages": [
     {
       "id": "stage-cnv_generate_bed_excluded",
