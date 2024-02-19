@@ -56,7 +56,7 @@
     },
     {
       "id": "stage-cnv_generate_workbook",
-      "executable": "app-eggd_generate_variant_workbook/2.5.0",
+      "executable": "app-eggd_generate_variant_workbook/2.7.1",
       "input": {
         "vcfs": [
           {
