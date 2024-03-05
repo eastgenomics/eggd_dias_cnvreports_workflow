@@ -11,7 +11,7 @@ DNAnexus workflow to generate bed files, coverage reports and Excel workbooks fo
 | generate_bed                    | 1.2.0    |
 | eggd_vep                        | 1.1.0  |
 | eggd_additional_cnv_tasks       | 1.0.1  |
-| eggd_generate_variant_workbook  | 2.5.0  |
+| eggd_generate_variant_workbook  | 2.8.0  |
 
 
 This workflow was made by EMEE GLH
