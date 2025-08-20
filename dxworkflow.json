@@ -1,6 +1,6 @@
 {
-  "name": "dias_cnvreports_v1.3.0",
-  "title": "dias_cnvreports_v1.3.0",
+  "name": "dias_cnvreports_v1.4.0",
+  "title": "dias_cnvreports_v1.4.0",
   "stages": [
     {
       "id": "stage-cnv_annotate_excluded_regions",
@@ -32,7 +32,7 @@
     },
     {
       "id": "stage-cnv_generate_workbook",
-      "executable": "app-eggd_generate_variant_workbook/2.8.2",
+      "executable": "app-eggd_generate_variant_workbook/2.10.2",
       "input": {
         "vcfs": [
           {
