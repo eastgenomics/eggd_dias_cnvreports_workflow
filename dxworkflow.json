@@ -3,38 +3,14 @@
   "title": "dias_cnvreports_v1.2.1",
   "stages": [
     {
-      "id": "stage-cnv_generate_bed_excluded",
-      "name": "generate_bed_for_excluded_annotation",
-      "executable": "app-eggd_generate_bed/1.3.0"
-    },
-    {
-      "id": "stage-cnv_generate_bed_vep",
-      "name": "generate_bed_for_vep",
-      "executable": "app-eggd_generate_bed/1.3.0"
-    },
-    {
       "id": "stage-cnv_annotate_excluded_regions",
-      "executable": "app-eggd_annotate_excluded_regions/1.0.1",
-      "input": {
-        "panel_bed": {
-          "$dnanexus_link": {
-            "stage": "stage-cnv_generate_bed_excluded",
-            "outputField": "bed_file"
-          }
-        }
-      }
+      "executable": "app-eggd_annotate_excluded_regions/1.0.1"
     },
     {
       "id": "stage-cnv_vep",
       "executable": "app-eggd_vep/1.3.0",
       "input": {
-        "normalise": false,
-        "panel_bed": {
-          "$dnanexus_link": {
-            "stage": "stage-cnv_generate_bed_vep",
-            "outputField": "bed_file"
-          }
-        }
+        "normalise": false
       },
       "systemRequirements": {
         "*": {
