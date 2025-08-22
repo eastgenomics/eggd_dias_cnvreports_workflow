@@ -1,6 +1,6 @@
 {
-  "name": "dias_cnvreports_v1.2.0",
-  "title": "dias_cnvreports_v1.2.0",
+  "name": "dias_cnvreports_v1.2.1",
+  "title": "dias_cnvreports_v1.2.1",
   "stages": [
     {
       "id": "stage-cnv_generate_bed_excluded",
@@ -56,7 +56,7 @@
     },
     {
       "id": "stage-cnv_generate_workbook",
-      "executable": "app-eggd_generate_variant_workbook/2.8.2",
+      "executable": "app-eggd_generate_variant_workbook/2.10.2",
       "input": {
         "vcfs": [
           {
