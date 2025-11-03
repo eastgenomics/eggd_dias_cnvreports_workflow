@@ -1,6 +1,6 @@
 # dias_cnvreports (DNAnexus Platform Workflow)
 
-DNAnexus workflow to generate bed files, coverage reports and Excel workbooks for gCNV reports.
+DNAnexus workflow to generate coverage reports and Excel workbooks for gCNV reports.
 
 ## What apps are used in this workflow?
 
